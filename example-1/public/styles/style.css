@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 body{
     background-color: #000;
     margin: 0 auto;
@@ -8,14 +12,100 @@ body{
     font-family: "Roboto", Arial, sans-serif;
 }
 
+header{
+    background: linear-gradient(45deg, rgb(25, 158, 154) 0%, rgb(36, 45, 79) 100%);
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    height: 80px;
+
+    & .logo{
+        height: 50px;
+        & img{
+            height: 100%;
+            width: auto;
+        }
+    }
+
+    & nav{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    & .menu{
+        display: flex;
+    }
+
+    & ul{
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    & .menu li{
+        list-style: none;
+        position: relative;
+    }
+
+    & .menu a{
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        height: 100%;
+        text-transform: uppercase;
+        color: currentColor;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 0 20px;
+        
+        & svg{
+            height: 20px;
+            width: auto;
+            margin-left: 10px;
+        }
+    }
+
+    & .menu a:hover{
+        color: #50535C;
+        background-color: #fff;
+    }
+
+    & .submenu{
+        position: absolute;
+        top: 80px;
+        left: 0px;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        color: #50535C;
+        height: auto;
+        width: 200px;
+        & a{
+            padding: 10px;
+        }
+    }
+    & .submenu.last{
+        left: -82px;
+    }
+    & .submenu a:hover{
+        background-color: #242D4F;
+        color: #fff;
+    }
+    & .submenu.hidde{
+        display: none;
+    }
+}
+
 .search-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
     padding: 60px 0;
-    background-color: rgb(66, 66, 66);
+    background: linear-gradient(45deg, rgb(28, 144, 145) 0%, rgb(251, 205, 46) 100%);
     & p{
         font-size: 23px;
         margin: 10px;

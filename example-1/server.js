@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import path from 'path';
 
@@ -15,13 +14,10 @@ app.use(cors({
 
 app.use(express.static(path.join('public')));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
 app.get('/api/rdap/domain/:domain', async(req, res) => {
     // TO DO: CHECK DOMAIN FORMAT
     const domainName = req.params.domain;
-    console.log('Domain requested: ', domainName);
+    console.log('Domain requested', domainName);
     let response
     let responseJson
     try{
@@ -29,14 +25,14 @@ app.get('/api/rdap/domain/:domain', async(req, res) => {
         responseJson = await response.json();
     }catch(e){
         console.error('Error fetching RDAP');
-        return res.status(500).json({error: "Error fetching RDAP data"});
+        return res.status(500).json({message: "Error fetching RDAP data", status: 500});
     }
 
     if(!response.ok){
         console.error('RESPONSE NOT OK');
         return res.status(response.status).json(responseJson);
     }
-    console.log('RDAP Data: ', responseJson);
+    console.log('SUCCESS RDAP FETCH');
     res.json(responseJson);
 })
 
