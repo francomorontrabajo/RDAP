@@ -15,13 +15,17 @@ El motivo de crear este endopoint se debe a que si deseamos consultar la informa
 
 ## Utilizando Docker
 
-1. Crear la imagen
+1. Instalar [Docker](https://www.docker.com/)
+
+[Ver guía de instalación](https://docs.docker.com/get-started/get-docker/)
+
+2. Crear la imagen
 
 ``` sh
 docker build -t rdap .
 ```
 
-2. Correr la imagen
+3. Correr la imagen
 
 ``` sh
 docker run --rm -p 3000:3000 -d rdap
