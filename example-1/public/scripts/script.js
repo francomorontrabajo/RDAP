@@ -8,6 +8,8 @@ const RDAP_URL = "http://localhost:3000/api/rdap/domain"
 
 // #region Menu Elements
 const menuToggleElements = document.querySelectorAll('.dropdown-menu');
+const menuBarElement = document.getElementById('bar');
+const menuElement = document.getElementById('menu');
 // #endregion
 
 // #region Handle Search
@@ -30,6 +32,10 @@ searchElement.addEventListener('click', async(e) => {
 
 // #region Handle Menu Toggle
 
+menuBarElement.addEventListener('click', () => {
+    menuElement.classList.toggle('hidde');
+})
+
 const hideAllSubmenus = () => {
     menuToggleElements.forEach(element => {
         if(!element.nextElementSibling.classList.contains('hidde')){
@@ -42,6 +48,13 @@ document.addEventListener('click', (e) => {
     if (!e.target.closest('.dropdown-menu') && !e.target.closest('.submenu')) {
         hideAllSubmenus();
     }
+
+    if(!e.target.closest('#bar') && !e.target.closest('#menu')){
+        if(!menuElement.classList.contains('hidde')){
+            menuElement.classList.add('hidde')
+        }
+    }
+
 });
 
 menuToggleElements.forEach(element => {
