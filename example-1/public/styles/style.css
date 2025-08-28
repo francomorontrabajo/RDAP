@@ -3,9 +3,9 @@
 }
 
 body{
-    background-color: #000;
+    background-color: #ffffff;
     margin: 0 auto;
-    color: #fff;
+    color: #000;
     width: 100%;
     height: 100vh;
     max-width: 1000px;
@@ -20,6 +20,10 @@ a{
 li{
     list-style: none;
 }
+
+.headers, .search-container{
+    color: #fff;
+} 
 
 .pre-header{
     display: flex;
@@ -252,12 +256,12 @@ li{
 
 }
 
-.pre-header, header{
+.pre-header, .headers header{
     background: linear-gradient(45deg, rgb(25, 158, 154) 0%, rgb(36, 45, 79) 100%);
     padding: 0 15px;
 }
 
-header{
+.headers header{
     display: flex;
     align-items: center;
     height: 80px;
@@ -390,6 +394,56 @@ header{
     }
 }
 
+.video-tutorials-container{
+    margin-top: 30px;
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 15px;
+    }
+
+    h2{
+        font-size: 23px;
+    }
+    p{
+        margin: 5px;
+        font: 18px;
+    }
+
+    p, h2{
+        color: #333;
+        font-weight: bold;
+    }
+
+    a{
+        color: #fff;
+        background-color: #141414;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .video-tutorials{
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+
+        iframe{
+            border-radius: 5px;
+            box-shadow: 1px 7px 24px -1px #9c9c9ca8;
+            background-position: cover;
+            width: 300px;
+            height: 250px;
+        }
+    }
+
+    
+
+}
+
 @media screen and (max-width: 1000px){
     .pre-header{
         height: 80px;
@@ -399,6 +453,16 @@ header{
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+
+    .video-tutorials{
+        flex-direction: column;
+        align-items: center;
+
+        & iframe{
+            width: 700px !important;
+            height: 300px !important;
+        }
     }
 }
 
@@ -428,7 +492,7 @@ header{
         order: 2;
         border: none;
     }
-    header{
+    .headers header{
         justify-content: space-between;
         position: relative;
         order: 1;
@@ -470,6 +534,17 @@ header{
     }
 }
 
+@media screen and (max-width: 750px){
+    .video-tutorials{
+        box-sizing: border-box;
+        margin: 40px;
+            & iframe{
+            width: 400px !important;
+            height: 300px !important;
+        }
+    }
+}
+
 @media screen and (max-width: 600px){
     .search-container{ 
         & form{
@@ -494,6 +569,23 @@ header{
             text-align: center;
         }
     }
+}
+
+@media screen and (max-width: 530px){
+    .video-tutorials-container{
+        & h2{
+            font-size: 16px;
+        }
+        & a{
+            font-size: 12px;
+        }
+
+        & iframe{
+            width: 300px !important;
+            height: 200px !important;
+        }
+    }
+
 }
 
 @media screen and (max-width: 500px){
@@ -532,5 +624,12 @@ header{
         display: grid !important;
         grid-template-columns: 1fr 1fr;
         padding: 15px 5px;
+    }
+
+    .video-tutorials-container{
+        & header{
+            display: flex;
+            flex-direction: column;   
+        }
     }
 }
