@@ -23,7 +23,7 @@ li{
 
 .headers, .search-container{
     color: #fff;
-} 
+}
 
 .pre-header{
     display: flex;
@@ -442,6 +442,31 @@ li{
 
     
 
+}
+
+.search-container{
+    position: relative;
+}
+.ban-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 5px;
+    background-color:#e7cbcb;
+    border-radius: 5px;
+    color: #a94442;
+    width: 80%;
+    padding: 15px 10px;
+    & span {
+        font-size: 10px;
+        font-weight: bold;
+    }
+    #ban{
+        width: 20px;
+        height: 20px;
+        fill: #a94442;
+    }
 }
 
 @media screen and (max-width: 1000px){
