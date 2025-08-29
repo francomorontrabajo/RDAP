@@ -20,20 +20,21 @@ app.get('/api/rdap/domain/:domain', async(req, res) => {
     console.log('Domain requested', domainName);
     let response
     let responseJson
+    // RDAP Request
     try{
         response = await fetch(`https://rdap.nic.ar/domain/${domainName}`);
-        responseJson = await response.json();
+
+        if(response.ok){
+            responseJson = await response.json();
+            console.log(`${domainName} Found !`);
+            return res.json(responseJson)
+        }
+        console.log(`${domainName} Not found ! :(`);
+        return res.status(404).json({message: `${domainName} Not Found`, status: 404});
     }catch(e){
-        console.error('Error fetching RDAP');
+        console.error('Error fetching RDAP Service :( ');
         return res.status(500).json({message: "Error fetching RDAP data", status: 500});
     }
-
-    if(!response.ok){
-        console.error('RESPONSE NOT OK');
-        return res.status(response.status).json(responseJson);
-    }
-    console.log('SUCCESS RDAP FETCH');
-    res.json(responseJson);
 })
 
 app.listen(PORT, () => {
