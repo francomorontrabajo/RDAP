@@ -4,7 +4,8 @@ const searchElement = document.getElementById('search');
 const domainElement = document.getElementById('domain');
 const zone = document.getElementById('zone');
 const banTemplateElement = document.getElementById("ban-template")
-const domainRegistryContainer = document.getElementById("domain-registry-container")
+const domainRegistryTemplate = document.getElementById("domain-registry-template")
+
 // #endregion
 const RDAP_URL = "http://localhost:3000/api/rdap/domain"
 
@@ -12,7 +13,6 @@ const RDAP_URL = "http://localhost:3000/api/rdap/domain"
 const menuToggleElements = document.querySelectorAll('.dropdown-menu');
 const menuBarElement = document.getElementById('bar');
 const menuElement = document.getElementById('menu');
-const closeDomainRegistryElement = document.getElementById('close-domain-registry')
 // #endregion
 
 // #region Handle Search
@@ -35,13 +35,28 @@ const showBanMessage = (errorMsg) => {
     }
 }
 
-const showDomainNameState = (domainName, state) => { // type state: "success" | "error"
-    
+const showDomainNameState = (domainName, state) => { // type state: "no-register" | "register"
+    const domainRegistryContainerExist = document.getElementById("domain-registry-container")
+    if(!domainRegistryContainerExist){
+        // Create element
+        const searchContainerElement = document.querySelector(".search-container")
+        const domainRegistryContainer = domainRegistryTemplate.content.cloneNode(true)
+
+        // Insert Domain Name
+        const domainRegistryName = domainRegistryContainer.querySelector(".domain-registry-name")
+        console.log(domainRegistryName)
+        domainRegistryName.textContent = domainName
+
+        // Insert Content
+            // IF success ...
+            // IF failure ...
+
+        searchContainerElement.prepend(domainRegistryContainer)
+
+    }
+
 }
 
-closeDomainRegistryElement.addEventListener('click', (e) => {
-    domainRegistryContainer.classList.add("hidde")
-})
 
 searchElement.addEventListener('click', async(e) => {
     let response;
@@ -64,7 +79,7 @@ searchElement.addEventListener('click', async(e) => {
                 showBanMessage("El nombre de dominio que ingresaste no es válido")
                 break
             case 404: // --> NOT FOUND. THE DOMAIN IS AVAILABLE FOR REGISTRATION ✅
-                
+                showDomainNameState(`${domainElement.value}${zone.value}`, "no-register")
                 break;
             case 500: // --> SERVER ERROR.
                 showBanMessage("Ha ocurrido un error al buscar el dominio")
@@ -75,8 +90,7 @@ searchElement.addEventListener('click', async(e) => {
         }
         
     }else if(HTTPStatus == 200){ // --> OK. THE DOMAIN IS REGISTERED ❌
-
-
+        showDomainNameState(`${domainElement.value}${zone.value}`, "register")
     }
 
     console.log("Ok")
@@ -106,9 +120,6 @@ document.addEventListener('click', (e) => {
         if(!menuElement.classList.contains('hidde')){
             menuElement.classList.add('hidde')
         }
-    }
-    if(!e.target.closest('.domain-registry-content')){
-        domainRegistryContainer.classList.add("hidde")
     }
 })
 
