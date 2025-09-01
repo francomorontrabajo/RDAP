@@ -61,6 +61,7 @@ const showDomainNameState = (domainName, state, url) => { // type state: "no-reg
 
         document.getElementById("close-domain-registry").addEventListener("click", (e) => {
             document.getElementById("domain-registry-container").classList.add("hidde")
+            document.querySelector("#domain").value = "" // Clear Domain Name
         })
 
         // #endregion
@@ -193,8 +194,6 @@ menuToggleElements.forEach(element => {
 
         hideAllSubmenus()
         e.currentTarget.nextElementSibling.classList.toggle('hidde');
-        console.log(e.target.nextElementSibling)
-
     })
 })
 

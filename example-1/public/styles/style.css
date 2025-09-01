@@ -440,9 +440,6 @@ li{
             height: 250px;
         }
     }
-
-    
-
 }
 
 .search-container{
@@ -566,6 +563,25 @@ li{
         }
         a.no-register:hover{
             text-decoration: underline;
+        }
+
+        table {
+            font-size: 12px;
+            border-collapse: collapse;
+            border: 2px solid rgb(140 140 140);
+        }
+
+        thead {
+            background-color: #F28CA9;
+        }
+
+        th, td {
+            border: 1px solid rgb(160 160 160);
+            padding: 4px 10px;
+        }
+
+        td span:first-child{
+            font-weight: bold;
         }
 
     }
