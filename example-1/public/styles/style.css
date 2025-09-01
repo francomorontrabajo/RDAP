@@ -502,6 +502,7 @@ li{
     }
 
     & .domain-registry-content{
+        max-width: 800px;
         position: relative;
         background-color: #fff;
         display: flex;
@@ -513,6 +514,60 @@ li{
         padding: 20px 40px;
         border-radius: 5px;
         box-shadow: 1px 7px 24px -1px #363636;
+    }
+
+    & .domain-body-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        & .status-icon{
+            width: 80px;
+            height: auto;
+            & svg{
+                width: 100%;
+                height: 100%;
+            }
+            & svg.available{
+                fill: #199E9A ;
+            }
+            & svg.not-available{
+                fill: #F28CA9 ;
+            }
+        }
+        & p{
+            font-size: 12px;
+            color: #333;
+        }
+        & p:first-of-type{
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+        }
+        p.available{
+            color: #199E9A ;
+        }
+        p.not-available{
+            color: #F28CA9 ;
+        }
+
+        a{
+            background-color: #242D4F;
+            color: #fff;
+            padding: 8px 10px;
+            border-radius: 5px;
+        }
+        a.no-register{
+            color: #44658B;
+            background: none;
+            padding: 0;
+        }
+        a.no-register:hover{
+            text-decoration: underline;
+        }
+
     }
 
     & header{

@@ -1,10 +1,11 @@
-
 // #region HTML Form Elements
-const searchElement = document.getElementById('search');
+const searchdomainform = document.getElementById('search-domain-form')
 const domainElement = document.getElementById('domain');
 const zone = document.getElementById('zone');
 const banTemplateElement = document.getElementById("ban-template")
 const domainRegistryTemplate = document.getElementById("domain-registry-template")
+const domainRegistryBodyTemplateSuccess = document.getElementById("domain-registry-body-template-success")
+const domainRegistryBodyTemplateFailure = document.getElementById("domain-registry-body-template-failure")
 
 // #endregion
 const RDAP_URL = "http://localhost:3000/api/rdap/domain"
@@ -35,7 +36,7 @@ const showBanMessage = (errorMsg) => {
     }
 }
 
-const showDomainNameState = (domainName, state) => { // type state: "no-register" | "register"
+const showDomainNameState = (domainName, state, url) => { // type state: "no-register" | "register"
     const domainRegistryContainerExist = document.getElementById("domain-registry-container")
     if(!domainRegistryContainerExist){
         // Create element
@@ -44,34 +45,95 @@ const showDomainNameState = (domainName, state) => { // type state: "no-register
 
         // Insert Domain Name
         const domainRegistryName = domainRegistryContainer.querySelector(".domain-registry-name")
-        console.log(domainRegistryName)
         domainRegistryName.textContent = domainName
-
-        // Insert Content
-            // IF success ...
-            // IF failure ...
 
         searchContainerElement.prepend(domainRegistryContainer)
 
+        // #region Events
+
+        document.getElementById("domain-registry-container").addEventListener("click", (e) => {
+            if(!e.target.closest('.domain-registry-content')){
+                document.querySelector("#domain").value = "" // Clear Domain Name
+                // I do not clear the zone because the user will probably want to search for a new domain name in the same zone.
+                e.currentTarget.classList.add("hidde")
+            }
+        })
+
+        document.getElementById("close-domain-registry").addEventListener("click", (e) => {
+            document.getElementById("domain-registry-container").classList.add("hidde")
+        })
+
+        // #endregion
+
+    }else{
+        domainRegistryContainerExist.classList.remove("hidde")
+        const domainRegistryName = domainRegistryContainerExist.querySelector(".domain-registry-name")
+        domainRegistryName.textContent = domainName
     }
 
+    if(state == "register"){
+        const domainBodyExist = document.querySelector(".domain-body-content")
+        if(domainBodyExist){
+            if(domainBodyExist.classList.contains("no-register")){
+                const disputeLink = domainBodyExist.querySelector("#dispute-link")
+                disputeLink.setAttribute("href", url)
+            }else if(domainBodyExist.classList.contains("register")){
+                const domainBodyChild = domainRegistryBodyTemplateFailure.content.cloneNode(true)
+                const disputeLink = domainBodyChild.querySelector("#dispute-link")
+                disputeLink.setAttribute("href", url)
+                //domainBodyExist.textContent = "" // Clear Body
+                domainBodyExist.replaceWith(domainBodyChild)
+            }
+        }else{
+            const domainBodyChild = domainRegistryBodyTemplateFailure.content.cloneNode(true)
+            const domainBody = document.querySelector(".domain-registry-body")
+            const disputeLink = domainBodyChild.querySelector("#dispute-link")
+            disputeLink.setAttribute("href", url)
+            domainBody.append(domainBodyChild)
+        }
+    }else if(state == "no-register"){
+        const domainBodyExist = document.querySelector(".domain-body-content")
+        if(domainBodyExist){
+            if(domainBodyExist.classList.contains("register")){
+                const registerLink = domainBodyExist.querySelector("#register-link")
+                registerLink.setAttribute("href", url)
+            }else if(domainBodyExist.classList.contains("no-register")){
+                const domainBodyChild = domainRegistryBodyTemplateSuccess.content.cloneNode(true)
+                const registerLink = domainBodyChild.querySelector("#register-link")
+                registerLink.setAttribute("href", url)
+                //domainBodyExist.textContent = "" // Clear Body
+                domainBodyExist.replaceWith(domainBodyChild)
+
+                //domainBodyExist.appendChild(domainBodyChild)
+            }
+        }else{
+            const domainBodyChild = domainRegistryBodyTemplateSuccess.content.cloneNode(true)
+            const domainBody = document.querySelector(".domain-registry-body")
+            const registerLink = domainBodyChild.querySelector("#register-link")
+            registerLink.setAttribute("href", url)
+            domainBody.append(domainBodyChild)
+        }
+    }
 }
 
+searchdomainform.addEventListener('submit', async(e) => {
+    e.preventDefault()
 
-searchElement.addEventListener('click', async(e) => {
     let response;
     let responseJson;
-    e.preventDefault()
-    console.log(`Fetching to: ${RDAP_URL}/${domainElement.value}${zone.value}`);
+
+    const domainNameValue = domainElement.value 
+    const zoneValue = zone.value
+
+    console.log(`Fetching to: ${RDAP_URL}/${domainNameValue}${zoneValue}`);
     try{
-        response = await fetch(`${RDAP_URL}/${domainElement.value}${zone.value}`);
+        response = await fetch(`${RDAP_URL}/${domainNameValue}${zoneValue}`);
         responseJson = await response.json();
     }catch(e){
         console.error('Error fetching RDAP data: ', e);
     }
 
     const HTTPStatus = response.status;
-    console.log(response)
 
     if(!response.ok){
         switch (HTTPStatus) {
@@ -79,7 +141,8 @@ searchElement.addEventListener('click', async(e) => {
                 showBanMessage("El nombre de dominio que ingresaste no es válido")
                 break
             case 404: // --> NOT FOUND. THE DOMAIN IS AVAILABLE FOR REGISTRATION ✅
-                showDomainNameState(`${domainElement.value}${zone.value}`, "no-register")
+                const NIC_URL = `https://nic.ar/elegi-como-ingresar?idTramite=0&dominio=${domainNameValue}&zona=${zoneValue}&accion=ALTA`
+                showDomainNameState(`${domainNameValue}${zoneValue}`, "no-register", NIC_URL)
                 break;
             case 500: // --> SERVER ERROR.
                 showBanMessage("Ha ocurrido un error al buscar el dominio")
@@ -88,12 +151,10 @@ searchElement.addEventListener('click', async(e) => {
                 showBanMessage(`ERROR. STATUS: ${HTTPStatus} - STATUS TEXT: ${response.statusText}`)
                 break;
         }
-        
     }else if(HTTPStatus == 200){ // --> OK. THE DOMAIN IS REGISTERED ❌
-        showDomainNameState(`${domainElement.value}${zone.value}`, "register")
+        const NIC_URL = `https://nic.ar/elegi-como-ingresar?idTramite=0&dominio=${domainNameValue}&zona=${zoneValue}&accion=DISPUTA`
+        showDomainNameState(`${domainNameValue}${zoneValue}`, "register", NIC_URL)
     }
-
-    console.log("Ok")
 
 })
 // #endregion
