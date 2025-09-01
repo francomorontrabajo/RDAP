@@ -153,6 +153,13 @@ searchdomainform.addEventListener('submit', async(e) => {
                 break;
         }
     }else if(HTTPStatus == 200){ // --> OK. THE DOMAIN IS REGISTERED ❌
+        const domainData = {
+            nameAndLastName: "",
+            id: responseJson.entities[0].handle,
+            registrationDate: responseJson.events[0].eventDate,
+            expirationDate:  responseJson.events[1].eventDate
+        }
+
         const NIC_URL = `https://nic.ar/elegi-como-ingresar?idTramite=0&dominio=${domainNameValue}&zona=${zoneValue}&accion=DISPUTA`
         showDomainNameState(`${domainNameValue}${zoneValue}`, "register", NIC_URL)
     }
