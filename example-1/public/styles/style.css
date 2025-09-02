@@ -717,6 +717,11 @@ li{
         }
     }
 
+    .domain-registry-content{
+        justify-content: start !important;
+        height: auto !important;
+    }
+
     .domain-body-header{
         display: flex;
         flex-direction: row !important;
