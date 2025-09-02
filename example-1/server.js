@@ -17,6 +17,7 @@ app.use(express.static(path.join('public')))
 app.get('/api/rdap/domain/:domain', async(req, res) => {
     // TO DO: CHECK DOMAIN FORMAT
     const domainName = req.params.domain
+
     console.log('Domain requested: ', domainName)
     let response
     let responseJson
@@ -54,7 +55,7 @@ app.get('/api/rdap/entity/:id', async(req, res) => {
         console.log(`${id} Not Found ! :(`)
         return res.status(404).json({message: `${id} Not Found`, status: 404})
     }catch(e){
-        console.error(`Error fetching RDAP Service :(`)
+        console.error(`Error fetching RDAP Service :(`, e)
         return res.status(500).json({message: "Error fetching RDAP data", status: 500})
     }
 })
