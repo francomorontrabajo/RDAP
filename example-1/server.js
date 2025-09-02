@@ -14,55 +14,93 @@ app.use(cors({
 
 app.use(express.static(path.join('public')))
 
-app.get('/api/rdap/domain/:domain', async(req, res) => {
+app.get('/api/rdap/domain/:domain', async (req, res) => {
     const domainName = req.params.domain.trim().toLowerCase()
 
     // #region Validate Domain Name
-    const domainContainOneDotAr = domainName.split(".ar").length == 2
+    const domainContainOneDotAr = domainName.split(".ar").length === 2
     const dotArIsAtTheEnd = domainName.endsWith(".ar")
 
-    if(!dotArIsAtTheEnd || !domainContainOneDotAr){
-        return res.status(400).json({message: `Bad Request. El dominio debe estar en la zona .ar`, status: 400})
+    if (!dotArIsAtTheEnd || !domainContainOneDotAr) {
+        return res.status(400).json({
+            message: `Bad Request. El dominio debe estar en la zona .ar`,
+            status: 400
+        })
     }
 
     const domainWithOutArZone = domainName.split(".ar")[0]
-    const domainWithoutZoneLen = domainWithOutArZone.split(".").length
-    const isDotArZone = domainWithoutZoneLen == 1
-    const isValidSubDomainLen = domainWithoutZoneLen == 2
+    const domainParts = domainWithOutArZone.split(".")
+    const domainWithoutZoneLen = domainParts.length
+    const isDotArZone = domainWithoutZoneLen === 1
+    const isValidSubDomainLen = domainWithoutZoneLen === 2
 
-    if(isDotArZone){
-        // Domain Name ends with .ar
-    }else if(isValidSubDomainLen){
-        const subDomain = domainWithOutArZone.split(".")[1]
+    // Regex de validación de nombres de dominio
+    const domainRegex = /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/
+
+    if (isDotArZone) {
+        const domainToValidate = domainParts[0]
+
+        if (!domainRegex.test(domainToValidate)) {
+            return res.status(400).json({
+                message: `Bad Request. El nombre de dominio es inválido (.ar). Solo se permiten [a-z0-9] y guiones en medio, con hasta 63 caracteres.`,
+                status: 400
+            })
+        }
+
+    } else if (isValidSubDomainLen) {
+        const [domainToValidate, subDomain] = domainParts
+
         const validZones = [
-            "com", "net", "gob", "int", "mil", "musica", "org", 
+            "com", "net", "gob", "int", "mil", "musica", "org",
             "tur", "seg", "senasa", "coop", "mutual", "bet"
         ]
-        if(!validZones.includes(subDomain)){
-            return res.status(400).json({message: `Bad Request. El dominio debe pertenecer a una zona válida (1)`, status: 400})
+
+        if (!validZones.includes(subDomain)) {
+            return res.status(400).json({
+                message: `Bad Request. El dominio debe pertenecer a una zona válida (1)`,
+                status: 400
+            })
         }
-    }else{
-        return res.status(400).json({message: `Bad Request. El dominio debe pertenecer a una zona válida (2)`, status: 400})
+
+        if (!domainRegex.test(domainToValidate)) {
+            return res.status(400).json({
+                message: `Bad Request. El nombre de dominio es inválido (.${subDomain}.ar). Solo se permiten [a-z0-9] y guiones en medio, con hasta 63 caracteres.`,
+                status: 400
+            })
+        }
+
+    } else {
+        return res.status(400).json({
+            message: `Bad Request. El dominio debe pertenecer a una zona válida (2)`,
+            status: 400
+        })
     }
     // #endregion
 
     console.log('Domain requested: ', domainName)
     let response
     let responseJson
+
     // RDAP Request
-    try{
+    try {
         response = await fetch(`https://rdap.nic.ar/domain/${domainName}`)
 
-        if(response.ok){
+        if (response.ok) {
             responseJson = await response.json()
             console.log(`${domainName} Found !`)
             return res.json(responseJson)
         }
         console.log(`${domainName} Not Found ! :(`)
-        return res.status(404).json({message: `${domainName} Not Found`, status: 404})
-    }catch(e){
-        console.error('Error fetching RDAP Service :(')
-        return res.status(500).json({message: "Error fetching RDAP data", status: 500})
+        return res.status(404).json({
+            message: `${domainName} Not Found`,
+            status: 404
+        })
+    } catch (e) {
+        console.error('Error fetching RDAP Service :(', e)
+        return res.status(500).json({
+            message: "Error fetching RDAP data",
+            status: 500
+        })
     }
 })
 
