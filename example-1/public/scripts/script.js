@@ -8,7 +8,7 @@ const domainRegistryBodyTemplateSuccess = document.getElementById("domain-regist
 const domainRegistryBodyTemplateFailure = document.getElementById("domain-registry-body-template-failure")
 
 // #endregion
-const RDAP_URL = "http://localhost:3000/api/rdap/domain"
+const RDAP_URL = "http://localhost:3000/api/rdap"
 
 // #region Menu Elements
 const menuToggleElements = document.querySelectorAll('.dropdown-menu');
@@ -36,7 +36,7 @@ const showBanMessage = (errorMsg) => {
     }
 }
 
-const showDomainNameState = (domainName, state, url) => { // type state: "no-register" | "register"
+const showDomainNameState = (domainName, state, url, extra) => { // type state: "no-register" | "register"
     const domainRegistryContainerExist = document.getElementById("domain-registry-container")
     if(!domainRegistryContainerExist){
         // Create element
@@ -73,23 +73,58 @@ const showDomainNameState = (domainName, state, url) => { // type state: "no-reg
     }
 
     if(state == "register"){
+        console.log(extra)
         const domainBodyExist = document.querySelector(".domain-body-content")
         if(domainBodyExist){
             if(domainBodyExist.classList.contains("no-register")){
                 const disputeLink = domainBodyExist.querySelector("#dispute-link")
                 disputeLink.setAttribute("href", url)
+
+                const nameAndLastNameDataElement = domainBodyExist.querySelector("#name-and-lastname-domain-data")
+                const idDataElement = domainBodyExist.querySelector("#id-domain-data")
+                const registrationDataElement = domainBodyExist.querySelector("#registration-domain-data")
+                const expirationDataElement = domainBodyExist.querySelector("#expiration-domain-data")
+
+                nameAndLastNameDataElement.textContent = extra.nameAndLastName
+                idDataElement.textContent = extra.id
+                registrationDataElement.textContent = extra.registrationDate
+                expirationDataElement.textContent = extra.expirationDate
+
             }else if(domainBodyExist.classList.contains("register")){
                 const domainBodyChild = domainRegistryBodyTemplateFailure.content.cloneNode(true)
                 const disputeLink = domainBodyChild.querySelector("#dispute-link")
                 disputeLink.setAttribute("href", url)
-                //domainBodyExist.textContent = "" // Clear Body
+
+                const nameAndLastNameDataElement = domainBodyChild.querySelector("#name-and-lastname-domain-data")
+                const idDataElement = domainBodyChild.querySelector("#id-domain-data")
+                const registrationDataElement = domainBodyChild.querySelector("#registration-domain-data")
+                const expirationDataElement = domainBodyChild.querySelector("#expiration-domain-data")
+
+                nameAndLastNameDataElement.textContent = extra.nameAndLastName
+                idDataElement.textContent = extra.id
+                registrationDataElement.textContent = extra.registrationDate
+                expirationDataElement.textContent = extra.expirationDate
+                
                 domainBodyExist.replaceWith(domainBodyChild)
+
+
             }
         }else{
             const domainBodyChild = domainRegistryBodyTemplateFailure.content.cloneNode(true)
             const domainBody = document.querySelector(".domain-registry-body")
             const disputeLink = domainBodyChild.querySelector("#dispute-link")
             disputeLink.setAttribute("href", url)
+
+            const nameAndLastNameDataElement = domainBodyChild.querySelector("#name-and-lastname-domain-data")
+            const idDataElement = domainBodyChild.querySelector("#id-domain-data")
+            const registrationDataElement = domainBodyChild.querySelector("#registration-domain-data")
+            const expirationDataElement = domainBodyChild.querySelector("#expiration-domain-data")
+
+            nameAndLastNameDataElement.textContent = extra.nameAndLastName
+            idDataElement.textContent = extra.id
+            registrationDataElement.textContent = extra.registrationDate
+            expirationDataElement.textContent = extra.expirationDate
+
             domainBody.append(domainBodyChild)
         }
     }else if(state == "no-register"){
@@ -128,7 +163,7 @@ searchdomainform.addEventListener('submit', async(e) => {
 
     console.log(`Fetching to: ${RDAP_URL}/${domainNameValue}${zoneValue}`);
     try{
-        response = await fetch(`${RDAP_URL}/${domainNameValue}${zoneValue}`);
+        response = await fetch(`${RDAP_URL}/domain/${domainNameValue}${zoneValue}`);
         responseJson = await response.json();
     }catch(e){
         console.error('Error fetching RDAP data: ', e);
@@ -153,15 +188,41 @@ searchdomainform.addEventListener('submit', async(e) => {
                 break;
         }
     }else if(HTTPStatus == 200){ // --> OK. THE DOMAIN IS REGISTERED ❌
-        const domainData = {
-            nameAndLastName: "",
-            id: responseJson.entities[0].handle,
-            registrationDate: responseJson.events[0].eventDate,
-            expirationDate:  responseJson.events[1].eventDate
+
+        // #region Entity Data
+
+        const entityData = responseJson.entities[0]
+        const entityEvents = responseJson.events
+        
+        const entityId = entityData.handle
+        const entityLink = `${RDAP_URL}/entity/${entityId}`
+        const entityRegistrationDate = entityEvents[0].eventDate
+        const entityExpirationDate = entityEvents[1].eventDate
+
+        let response2 
+        let responseJson2
+
+        try{
+            response2 = await fetch(entityLink);
+            responseJson2 = await response2.json();
+        }catch(e){
+            console.error('Error fetching RDAP data: ', e);
         }
 
+        const entityData2 = responseJson2.vcardArray
+        const entityNameAndLastName = entityData2[1][1][3]
+
+        const domainData = {
+            nameAndLastName: entityNameAndLastName, 
+            id: entityId,
+            registrationDate: entityRegistrationDate,
+            expirationDate:  entityExpirationDate,
+        }
+
+        // #endregion
+
         const NIC_URL = `https://nic.ar/elegi-como-ingresar?idTramite=0&dominio=${domainNameValue}&zona=${zoneValue}&accion=DISPUTA`
-        showDomainNameState(`${domainNameValue}${zoneValue}`, "register", NIC_URL)
+        showDomainNameState(`${domainNameValue}${zoneValue}`, "register", NIC_URL, domainData)
     }
 
 })
