@@ -15,8 +15,36 @@ app.use(cors({
 app.use(express.static(path.join('public')))
 
 app.get('/api/rdap/domain/:domain', async(req, res) => {
-    // TO DO: CHECK DOMAIN FORMAT
-    const domainName = req.params.domain
+    const domainName = req.params.domain.trim().toLowerCase()
+
+    // #region Validate Domain Name
+    const domainContainOneDotAr = domainName.split(".ar").length == 2
+    const dotArIsAtTheEnd = domainName.endsWith(".ar")
+
+    if(!dotArIsAtTheEnd || !domainContainOneDotAr){
+        return res.status(400).json({message: `Bad Request. El dominio debe estar en la zona .ar`, status: 400})
+    }
+
+    const domainWithOutArZone = domainName.split(".ar")[0]
+    const domainWithoutZoneLen = domainWithOutArZone.split(".").length
+    const isDotArZone = domainWithoutZoneLen == 1
+    const isValidSubDomainLen = domainWithoutZoneLen == 2
+
+    if(isDotArZone){
+        // Domain Name ends with .ar
+    }else if(isValidSubDomainLen){
+        const subDomain = domainWithOutArZone.split(".")[1]
+        const validZones = [
+            "com", "net", "gob", "int", "mil", "musica", "org", 
+            "tur", "seg", "senasa", "coop", "mutual", "bet"
+        ]
+        if(!validZones.includes(subDomain)){
+            return res.status(400).json({message: `Bad Request. El dominio debe pertenecer a una zona válida (1)`, status: 400})
+        }
+    }else{
+        return res.status(400).json({message: `Bad Request. El dominio debe pertenecer a una zona válida (2)`, status: 400})
+    }
+    // #endregion
 
     console.log('Domain requested: ', domainName)
     let response

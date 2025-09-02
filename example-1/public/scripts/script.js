@@ -174,6 +174,7 @@ searchdomainform.addEventListener('submit', async(e) => {
     if(!response.ok){
         switch (HTTPStatus) {
             case 400: // --> BAD REQUEST. THE DOMAIN NAME FORMAT IS NOT VALID.  
+                console.log(responseJson.message)
                 showBanMessage("El nombre de dominio que ingresaste no es válido")
                 break
             case 404: // --> NOT FOUND. THE DOMAIN IS AVAILABLE FOR REGISTRATION ✅
