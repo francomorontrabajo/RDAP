@@ -163,7 +163,8 @@ searchdomainform.addEventListener('submit', async(e) => {
 
     console.log(`Fetching to: ${RDAP_URL}/${domainNameValue}${zoneValue}`);
     try{
-        response = await fetch(`${RDAP_URL}/domain/${domainNameValue}${zoneValue}`);
+        const rdapDomainEncode = encodeURI(`${RDAP_URL}/domain/${domainNameValue}${zoneValue}`)
+        response = await fetch(rdapDomainEncode);
         responseJson = await response.json();
     }catch(e){
         console.error('Error fetching RDAP data: ', e);
@@ -196,7 +197,8 @@ searchdomainform.addEventListener('submit', async(e) => {
         const entityEvents = responseJson.events
         
         const entityId = entityData.handle
-        const entityLink = `${RDAP_URL}/entity/${entityId}`
+        const rdapEntityEncode = encodeURI(`${RDAP_URL}/entity/${entityId}`)
+
         const entityRegistrationDate = entityEvents[0].eventDate
         const entityExpirationDate = entityEvents[1].eventDate
 
@@ -204,7 +206,7 @@ searchdomainform.addEventListener('submit', async(e) => {
         let responseJson2
 
         try{
-            response2 = await fetch(entityLink);
+            response2 = await fetch(rdapEntityEncode);
             responseJson2 = await response2.json();
         }catch(e){
             console.error('Error fetching RDAP data: ', e);
@@ -222,7 +224,7 @@ searchdomainform.addEventListener('submit', async(e) => {
 
         // #endregion
 
-        const NIC_URL = `https://nic.ar/elegi-como-ingresar?idTramite=0&dominio=${domainNameValue}&zona=${zoneValue}&accion=DISPUTA`
+        const NIC_URL = encodeURI(`https://nic.ar/elegi-como-ingresar?idTramite=0&dominio=${domainNameValue}&zona=${zoneValue}&accion=DISPUTA`)
         showDomainNameState(`${domainNameValue}${zoneValue}`, "register", NIC_URL, domainData)
     }
 

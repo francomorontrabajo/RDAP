@@ -14,6 +14,13 @@ app.use(cors({
 
 app.use(express.static(path.join('public')))
 
+app.get('/api/rdap/domain', (req, res) => {
+    return res.status(400).json({
+        message: `Bad Request. El nombre de dominio no puede ser vacío`,
+        status: 400
+    }) 
+})
+
 app.get('/api/rdap/domain/:domain', async (req, res) => {
     const domainName = req.params.domain.trim().toLowerCase()
 
