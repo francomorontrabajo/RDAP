@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import path from 'path'
+import dictionary from './dictionary.json' with { type: 'json' };
 
 const app = express()
 
@@ -13,13 +14,6 @@ app.use(cors({
 }))
 
 app.use(express.static(path.join('public')))
-
-app.get('/api/rdap/domain', (req, res) => {
-    return res.status(400).json({
-        message: `Bad Request. El nombre de dominio no puede ser vacío`,
-        status: 400
-    }) 
-})
 
 app.get('/api/rdap/domain/:domain', async (req, res) => {
     const domainName = req.params.domain.trim().toLowerCase()
@@ -131,6 +125,18 @@ app.get('/api/rdap/entity/:id', async(req, res) => {
         console.error(`Error fetching RDAP Service :(`, e)
         return res.status(500).json({message: "Error fetching RDAP data", status: 500})
     }
+})
+
+app.get('/dictionary', async(req, res) => {
+    let dictionaryJson;
+    try{
+        dictionaryJson = JSON.parse(JSON.stringify(dictionary))
+        console.log(dictionaryJson)
+    }catch(e){
+        console.log("El diccionario no existe o hubo un problema")
+    }
+
+    res.send("OK")
 })
 
 app.listen(PORT, () => {
