@@ -1,0 +1,17 @@
+{
+    "name": "nic-api",
+    "version": "1.0.0",
+    "description": "RDAP API for .ar domains",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node --watch server.js"
+    },
+    "author": "Franco Ignacio Morón",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "express": "^5.1.0",
+        "path": "^0.12.7"
+    }      
+}

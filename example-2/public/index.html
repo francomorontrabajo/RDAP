@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDAP</title>
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/style.css">
+<body>
+	<div class="headers">
+		<div class="pre-header">
+			<div class="social-media">
+				<a href="https://www.facebook.com/NicArgentina" id="facebook-link">
+					<svg id="facebook" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 440 146.7 540.8 258.2 568.5L258.2 398.2L205.4 398.2L205.4 320L258.2 320L258.2 286.3C258.2 199.2 297.6 158.8 383.2 158.8C399.4 158.8 427.4 162 438.9 165.2L438.9 236C432.9 235.4 422.4 235 409.3 235C367.3 235 351.1 250.9 351.1 292.2L351.1 320L434.7 320L420.3 398.2L351 398.2L351 574.1C477.8 558.8 576 450.9 576 320z"/></svg>
+				</a>
+				<a href="https://twitter.com/nicargentina" id="x-link">
+					<svg id="x" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M160 96C124.7 96 96 124.7 96 160L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 160C544 124.7 515.3 96 480 96L160 96zM457.1 180L353.3 298.6L475.4 460L379.8 460L305 362.1L219.3 460L171.8 460L282.8 333.1L165.7 180L263.7 180L331.4 269.5L409.6 180L457.1 180zM419.3 431.6L249.4 206.9L221.1 206.9L392.9 431.6L419.3 431.6z"/></svg>
+				</a>
+				<a href="https://www.youtube.com/user/nicargentina" id="youtube-link">
+					<svg id="youtube" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M581.7 188.1C575.5 164.4 556.9 145.8 533.4 139.5C490.9 128 320.1 128 320.1 128C320.1 128 149.3 128 106.7 139.5C83.2 145.8 64.7 164.4 58.4 188.1C47 231 47 320.4 47 320.4C47 320.4 47 409.8 58.4 452.7C64.7 476.3 83.2 494.2 106.7 500.5C149.3 512 320.1 512 320.1 512C320.1 512 490.9 512 533.5 500.5C557 494.2 575.5 476.3 581.8 452.7C593.2 409.8 593.2 320.4 593.2 320.4C593.2 320.4 593.2 231 581.8 188.1zM264.2 401.6L264.2 239.2L406.9 320.4L264.2 401.6z"/></svg>
+				</a>
+				<a href="https://www.instagram.com/nicargentina/" id="instagram-link">
+					<svg id="instagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+						<defs>
+							<linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+								<stop offset="0%" stop-color="#FCB045" />
+								<stop offset="50%" stop-color="#FD1D1D" />
+								<stop offset="100%" stop-color="#833AB4" />
+							</linearGradient>
+						</defs>
+						<path fill="url(#instagram-gradient)" d="M290.4 275.7C274 286 264.5 304.5 265.5 323.8C266.6 343.2 278.2 360.4 295.6 368.9C313.1 377.3 333.8 375.5 349.6 364.3C366 354 375.5 335.5 374.5 316.2C373.4 296.8 361.8 279.6 344.4 271.1C326.9 262.7 306.2 264.5 290.4 275.7zM432.7 207.3C427.5 202.1 421.2 198 414.3 195.3C396.2 188.2 356.7 188.5 331.2 188.8C327.1 188.8 323.3 188.9 320 188.9C316.7 188.9 312.8 188.9 308.6 188.8C283.1 188.5 243.8 188.1 225.7 195.3C218.8 198 212.6 202.1 207.3 207.3C202 212.5 198 218.8 195.3 225.7C188.2 243.8 188.6 283.4 188.8 308.9C188.8 313 188.9 316.8 188.9 320C188.9 323.2 188.9 327 188.8 331.1C188.6 356.6 188.2 396.2 195.3 414.3C198 421.2 202.1 427.4 207.3 432.7C212.5 438 218.8 442 225.7 444.7C243.8 451.8 283.3 451.5 308.8 451.2C312.9 451.2 316.7 451.1 320 451.1C323.3 451.1 327.2 451.1 331.4 451.2C356.9 451.5 396.2 451.9 414.3 444.7C421.2 442 427.4 437.9 432.7 432.7C438 427.5 442 421.2 444.7 414.3C451.9 396.3 451.5 356.9 451.2 331.3C451.2 327.1 451.1 323.2 451.1 319.9C451.1 316.6 451.1 312.8 451.2 308.5C451.5 283 451.9 243.6 444.7 225.5C442 218.6 437.9 212.4 432.7 207.1L432.7 207.3zM365.6 251.8C383.7 263.9 396.2 282.7 400.5 304C404.8 325.3 400.3 347.5 388.2 365.6C382.2 374.6 374.5 382.2 365.6 388.2C356.7 394.2 346.6 398.3 336 400.4C314.7 404.6 292.5 400.2 274.4 388.1C256.3 376 243.8 357.2 239.5 335.9C235.2 314.6 239.7 292.4 251.7 274.3C263.7 256.2 282.6 243.7 303.9 239.4C325.2 235.1 347.4 239.6 365.5 251.6L365.6 251.6zM394.8 250.5C391.7 248.4 389.2 245.4 387.7 241.9C386.2 238.4 385.9 234.6 386.6 230.8C387.3 227 389.2 223.7 391.8 221C394.4 218.3 397.9 216.5 401.6 215.8C405.3 215.1 409.2 215.4 412.7 216.9C416.2 218.4 419.2 220.8 421.3 223.9C423.4 227 424.5 230.7 424.5 234.5C424.5 237 424 239.5 423.1 241.8C422.2 244.1 420.7 246.2 419 248C417.3 249.8 415.1 251.2 412.8 252.2C410.5 253.2 408 253.7 405.5 253.7C401.7 253.7 398 252.6 394.9 250.5L394.8 250.5zM544 160C544 124.7 515.3 96 480 96L160 96C124.7 96 96 124.7 96 160L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 160zM453 453C434.3 471.7 411.6 477.6 386 478.9C359.6 480.4 280.4 480.4 254 478.9C228.4 477.6 205.7 471.7 187 453C168.3 434.3 162.4 411.6 161.2 386C159.7 359.6 159.7 280.4 161.2 254C162.5 228.4 168.3 205.7 187 187C205.7 168.3 228.5 162.4 254 161.2C280.4 159.7 359.6 159.7 386 161.2C411.6 162.5 434.3 168.3 453 187C471.7 205.7 477.6 228.4 478.8 254C480.3 280.3 480.3 359.4 478.8 385.9C477.5 411.5 471.7 434.2 453 452.9L453 453z"/>
+					</svg>
+				</a>
+				<a href="https://www.linkedin.com/company/2758974/" id="linkedin-link">
+					<svg id="linkedin" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M512 96L127.9 96C110.3 96 96 110.5 96 128.3L96 511.7C96 529.5 110.3 544 127.9 544L512 544C529.6 544 544 529.5 544 511.7L544 128.3C544 110.5 529.6 96 512 96zM231.4 480L165 480L165 266.2L231.5 266.2L231.5 480L231.4 480zM198.2 160C219.5 160 236.7 177.2 236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160zM480.3 480L413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480z"/></svg>
+				</a>
+				<a href="https://www.tiktok.com/@nicargentina" id="tiktok-link">
+					<svg id="tiktok" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M544.5 273.9C500.5 274 457.5 260.3 421.7 234.7L421.7 413.4C421.7 446.5 411.6 478.8 392.7 506C373.8 533.2 347.1 554 316.1 565.6C285.1 577.2 251.3 579.1 219.2 570.9C187.1 562.7 158.3 545 136.5 520.1C114.7 495.2 101.2 464.1 97.5 431.2C93.8 398.3 100.4 365.1 116.1 336C131.8 306.9 156.1 283.3 185.7 268.3C215.3 253.3 248.6 247.8 281.4 252.3L281.4 342.2C266.4 337.5 250.3 337.6 235.4 342.6C220.5 347.6 207.5 357.2 198.4 369.9C189.3 382.6 184.4 398 184.5 413.8C184.6 429.6 189.7 444.8 199 457.5C208.3 470.2 221.4 479.6 236.4 484.4C251.4 489.2 267.5 489.2 282.4 484.3C297.3 479.4 310.4 469.9 319.6 457.2C328.8 444.5 333.8 429.1 333.8 413.4L333.8 64L421.8 64C421.7 71.4 422.4 78.9 423.7 86.2C426.8 102.5 433.1 118.1 442.4 131.9C451.7 145.7 463.7 157.5 477.6 166.5C497.5 179.6 520.8 186.6 544.6 186.6L544.6 274z"/></svg>
+				</a>
+
+			</div>
+			<div class="contact-container">
+				<a class="contact" href="https://nic.ar/ayuda/atencion_a_usuarios/contacto">
+					<svg id="envelope" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M112 128C85.5 128 64 149.5 64 176C64 191.1 71.1 205.3 83.2 214.4L291.2 370.4C308.3 383.2 331.7 383.2 348.8 370.4L556.8 214.4C568.9 205.3 576 191.1 576 176C576 149.5 554.5 128 528 128L112 128zM64 260L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 260L377.6 408.8C343.5 434.4 296.5 434.4 262.4 408.8L64 260z"/></svg>
+					<span>Contacto</span>
+				</a>
+				<a class="contact" href="https://nic.s1gateway.com/pe/f28359a3ead9b6139e5a638e921a29b8037295121bee90a34a7b5d2fb45cd6e4051bc896ec913fa5">
+					<svg id="chat" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M416 208C416 305.2 330 384 224 384C197.3 384 171.9 379 148.8 370L67.2 413.2C57.9 418.1 46.5 416.4 39 409C31.5 401.6 29.8 390.1 34.8 380.8L70.4 313.6C46.3 284.2 32 247.6 32 208C32 110.8 118 32 224 32C330 32 416 110.8 416 208zM416 576C321.9 576 243.6 513.9 227.2 432C347.2 430.5 451.5 345.1 463 229.3C546.3 248.5 608 317.6 608 400C608 439.6 593.7 476.2 569.6 505.6L605.2 572.8C610.1 582.1 608.4 593.5 601 601C593.6 608.5 582.1 610.2 572.8 605.2L491.2 562C468.1 571 442.7 576 416 576z"/></svg>
+					<span>Chat</span>
+				</a>
+				<a class="contact" href="https://t.me/NICAr_Atencion_bot">
+					<svg id="telegram" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M320 72C183 72 72 183 72 320C72 457 183 568 320 568C457 568 568 457 568 320C568 183 457 72 320 72zM435 240.7C431.3 279.9 415.1 375.1 406.9 419C403.4 437.6 396.6 443.8 390 444.4C375.6 445.7 364.7 434.9 350.7 425.7C328.9 411.4 316.5 402.5 295.4 388.5C270.9 372.4 286.8 363.5 300.7 349C304.4 345.2 367.8 287.5 369 282.3C369.2 281.6 369.3 279.2 367.8 277.9C366.3 276.6 364.2 277.1 362.7 277.4C360.5 277.9 325.6 300.9 258.1 346.5C248.2 353.3 239.2 356.6 231.2 356.4C222.3 356.2 205.3 351.4 192.6 347.3C177.1 342.3 164.7 339.6 165.8 331C166.4 326.5 172.5 322 184.2 317.3C256.5 285.8 304.7 265 328.8 255C397.7 226.4 412 221.4 421.3 221.2C423.4 221.2 427.9 221.7 430.9 224.1C432.9 225.8 434.1 228.2 434.4 230.8C434.9 234 435 237.3 434.8 240.6z"/></svg>
+					<span>Telegram</span>
+				</a>
+				<a  class="contact" href="https://wa.me/5491131681572">
+					<svg id="whatsapp" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M476.9 161.1C435 119.1 379.2 96 319.9 96C197.5 96 97.9 195.6 97.9 318C97.9 357.1 108.1 395.3 127.5 429L96 544L213.7 513.1C246.1 530.8 282.6 540.1 319.8 540.1L319.9 540.1C442.2 540.1 544 440.5 544 318.1C544 258.8 518.8 203.1 476.9 161.1zM319.9 502.7C286.7 502.7 254.2 493.8 225.9 477L219.2 473L149.4 491.3L168 423.2L163.6 416.2C145.1 386.8 135.4 352.9 135.4 318C135.4 216.3 218.2 133.5 320 133.5C369.3 133.5 415.6 152.7 450.4 187.6C485.2 222.5 506.6 268.8 506.5 318.1C506.5 419.9 421.6 502.7 319.9 502.7zM421.1 364.5C415.6 361.7 388.3 348.3 383.2 346.5C378.1 344.6 374.4 343.7 370.7 349.3C367 354.9 356.4 367.3 353.1 371.1C349.9 374.8 346.6 375.3 341.1 372.5C308.5 356.2 287.1 343.4 265.6 306.5C259.9 296.7 271.3 297.4 281.9 276.2C283.7 272.5 282.8 269.3 281.4 266.5C280 263.7 268.9 236.4 264.3 225.3C259.8 214.5 255.2 216 251.8 215.8C248.6 215.6 244.9 215.6 241.2 215.6C237.5 215.6 231.5 217 226.4 222.5C221.3 228.1 207 241.5 207 268.8C207 296.1 226.9 322.5 229.6 326.2C232.4 329.9 268.7 385.9 324.4 410C359.6 425.2 373.4 426.5 391 423.9C401.7 422.3 423.8 410.5 428.4 397.5C433 384.5 433 373.4 431.6 371.1C430.3 368.6 426.6 367.2 421.1 364.5z"/></svg>
+					<span>Whatsapp</span>
+				</a>
+			</div>
+			<div class="options-container">
+				<a class="login" href="https://nic.ar/ingreso">
+					Ingreso
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M320 312C386.3 312 440 258.3 440 192C440 125.7 386.3 72 320 72C253.7 72 200 125.7 200 192C200 258.3 253.7 312 320 312zM290.3 368C191.8 368 112 447.8 112 546.3C112 562.7 125.3 576 141.7 576L498.3 576C514.7 576 528 562.7 528 546.3C528 447.8 448.2 368 349.7 368L290.3 368z"/></svg>
+				</a>
+				<form class="search-article-form">
+					<input type="search" name="search-article" id="search-article" placeholder="Buscar en el sitio...">
+				</form>
+			</div>
+		</div>
+		<header>
+			<a class="logo" href="#" rel="home">
+				<img src="./assets/logo-nic.png" alt="NIC Argentina">
+			</a>
+			<nav>
+				<ul id="menu" class="menu hidde">
+					<li>
+						<a class="dropdown-menu" href="#NIC-ARGENTINA">
+							NIC Argentina
+							<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M480 224C492.9 224 504.6 231.8 509.6 243.8C514.6 255.8 511.8 269.5 502.7 278.7L342.7 438.7C330.2 451.2 309.9 451.2 297.4 438.7L137.4 278.7C128.2 269.5 125.5 255.8 130.5 243.8C135.5 231.8 147.1 224 160 224L480 224z"/></svg>
+						</a>
+						<ul class="submenu hidde">
+							<li><a href="https://nic.ar/nic-argentina/acerca_de_nosotros">Acerca de nosotros</a></li>
+							<li><a href="https://nic.ar/nic-argentina/normativavigente">Normativa vigente</a></li>
+							<li><a href="https://nic.ar/prensa">Prensa</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="dropdown-menu" href="#INICIATIVAS">
+							Iniciativas
+							<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M480 224C492.9 224 504.6 231.8 509.6 243.8C514.6 255.8 511.8 269.5 502.7 278.7L342.7 438.7C330.2 451.2 309.9 451.2 297.4 438.7L137.4 278.7C128.2 269.5 125.5 255.8 130.5 243.8C135.5 231.8 147.1 224 160 224L480 224z"/></svg>
+						</a>
+						<ul class="submenu hidde">
+							<li><a href="https://nic.ar/kitnic">Herramientas KITNIC</a></li>
+							<li><a href="https://bfa.ar">Blockchain Federal Argentina</a></li>
+							<li><a href="https://nic.ar/novedades/podcast">Podcast - Voces en red</a></li>
+						</ul>
+					</li>
+					<li><a href="https://nic.ar/novedades/noticias">Novedades</a></li>
+					<li>
+						<a class="dropdown-menu" href="#DOMINIOS">
+							Dominios
+							<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M480 224C492.9 224 504.6 231.8 509.6 243.8C514.6 255.8 511.8 269.5 502.7 278.7L342.7 438.7C330.2 451.2 309.9 451.2 297.4 438.7L137.4 278.7C128.2 269.5 125.5 255.8 130.5 243.8C135.5 231.8 147.1 224 160 224L480 224z"/></svg>
+						</a>
+						<ul class="submenu hidde">
+							<li><a href="https://nic.ar/buscar-dominio">Buscar dominio</a></li>
+							<li><a href="https://nic.ar/es/dominios/aranceles">Dominios y aranceles</a></li>
+							<li><a href="https://nic.ar/dominios/nicarnumeros_">NICAR en números</a></li>
+							<li><a href="https://rdlist.nic.ar/rd_list">Altas y transferencias diarias</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="dropdown-menu" href="#AYUDA">
+							Ayuda
+							<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M480 224C492.9 224 504.6 231.8 509.6 243.8C514.6 255.8 511.8 269.5 502.7 278.7L342.7 438.7C330.2 451.2 309.9 451.2 297.4 438.7L137.4 278.7C128.2 269.5 125.5 255.8 130.5 243.8C135.5 231.8 147.1 224 160 224L480 224z"/></svg>
+						</a>
+						<ul class="submenu last hidde">
+							<li><a href="https://nic.ar/ayuda/instructivos">Instructivos</a></li>
+							<li><a href="https://nic.ar/ayuda/atencion_a_usuarios">Atención a usuarios</a></li>
+							<li><a href="https://nic.ar/ayuda/faq/1">Preguntas frecuentes</a></li>
+							<li><a href="https://nic.ar/ayuda/atencion_a_usuarios/no-residentes">No residentes</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<svg id="bar" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z"/></svg>
+		</header>
+	</div>
+	<section class="search-container">
+		<template id="ban-template">
+			<div id="ban-container" class="ban-container">
+				<svg id="ban" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M431.2 476.5L163.5 208.8C141.1 240.2 128 278.6 128 320C128 426 214 512 320 512C361.5 512 399.9 498.9 431.2 476.5zM476.5 431.2C498.9 399.8 512 361.4 512 320C512 214 426 128 320 128C278.5 128 240.1 141.1 208.8 163.5L476.5 431.2zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z"/></svg>
+				<span class="ban-msg"></span>
+			</div>
+		</template>
+
+		<template id="domain-registry-template">
+			<div class="domain-registry-container" id="domain-registry-container">
+				<div class="domain-registry-content">
+					<div id="close-domain-registry" class="domain-registry-exit">
+						<svg fill="currenColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z"/></svg>
+					</div>
+					<header class="domain-registry-header">
+						<h2 class="domain-registry-name">
+							DomainName
+						</h2>
+					</header>
+					<div class="domain-registry-body">
+
+					</div>
+
+					<footer class="domain-registry-footer">
+						<p>
+							Recordá que al realizar cualquier trámite en NIC Argentina, aceptás los términos y condiciones de la
+							<span>
+								<a href="https://nic.ar/es/nic-argentina/normativavigente">Normativa Vigente.</a>
+							</span>
+						</p>
+					</footer>
+				</div>
+			</div>
+		</template>
+
+		<template id="domain-registry-body-template-success">
+			<div class="domain-body-content register">
+				<div class="domain-body-header">
+					<div class="status-icon">
+						<svg fill="currentColor" class="available" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"/></svg>
+					</div>
+					<p class="available" >El dominio está disponible para registrarlo</p>
+				</div>
+				<p>Acordate que los dominios '.bet.ar', '.coop.ar', ‘.gob.ar’, ‘.int.ar’, ‘.mil.ar’, ‘.musica.ar’, '.mutual.ar', ‘.org.ar’, ‘.seg.ar’, '.senasa.ar' o ‘.tur.ar’ son zonas especiales, por lo que para obtenerlos, tenés que solicitar su habilitación. Conocé cómo hacerlo a través de nuestro instructivo.</p>
+				<a id="register-link" href="">Quiero registrarlo</a>
+			</div>
+		</template>
+
+		<template id="domain-registry-body-template-failure">
+			<div class="domain-body-content no-register">
+				<div class="domain-body-header">
+					<div class="status-icon">
+						<svg fill="currentColor" class="not-available" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z"/></svg>
+					</div>
+					<p class="not-available" >El dominio no está disponible para registrarlo</p>
+				</div>
+				<p>Podés encontrar debajo los datos del mismo. Si no son tuyos y tenés mejor derecho o interés legítimo sobre este dominio, podés iniciar una <a class="no-register" id="dispute-link" href="https://nic.ar/elegi-como-ingresar?idTramite=0&dominio=hola&zona=.ar&accion=DISPUTA">Disputa.</a>
+				<p>¿Querés registrar otro nombre? Te sugerimos buscar uno que te represente.</p>
+				<table>
+  					<thead>
+						<tr>
+							<th scope="col">Datos del dominio</th>
+						</tr>
+  					</thead>
+  					<tbody>
+						<tr>
+						<td>
+							<span>Nombre y Apellido:</span>
+							<span id="name-and-lastname-domain-data">SA LA NACION</span>
+						</td>
+						<tr>
+						<tr>
+						<td>
+							<span>CUIT/CUIL/ID:</span>
+							<span id="id-domain-data">30500089624</span>
+						</td>
+						</tr>
+						<tr>
+						<td>
+							<span>Fecha de Alta:</span>
+							<span id="registration-domain-data">04/11/2019</span>
+						</td>
+						</tr>
+						<tr>
+						<tr>
+						<td>
+							<span >Fecha de vencimiento:</span>
+							<span id="expiration-domain-data">04/11/2025</span>
+						</td>
+						</tr>
+  					<tbody>
+				</table>
+			</div>
+		</template>
+
+		<p>Bienvenidos al registro oficial de dominios .ar</p>
+		<h1>Encontrá tu dominio</h1>
+		<form id="search-domain-form" >
+			<input type="search" id="domain" placeholder="Me interesa el dominio...">
+			<select id="zone">
+				<option value=".ar">.ar</option>
+				<option value=".com.ar">.com.ar</option>
+				<option value=".net.ar">.net.ar</option>
+				<option value=".gob.ar">.gob.ar</option>
+				<option value=".int.ar">.int.ar</option>
+				<option value=".mil.ar">.mil.ar</option>
+				<option value=".musica.ar">.musica.ar</option>
+				<option value=".org.ar">.org.ar</option>
+				<option value=".tur.ar">.tur.ar</option>
+				<option value=".seg.ar">.seg.ar</option>
+				<option value=".senasa.ar">.senasa.ar</option>
+				<option value=".coop.ar">.coop.ar</option>
+				<option value=".mutual.ar">.mutual.ar</option>
+				<option value=".bet.ar">.bet.ar</option>
+			</select>
+			<input type="submit" id="search" value="Buscar">
+		</form>
+	</section>
+	<section class="video-tutorials-container">
+		<header>
+			<h2>Guiate con nuestros tutoriales</h2>
+			<a href="https://www.youtube.com/user/nicargentina">Ver todos</a>
+		</header>
+		<div class="video-tutorials">
+			<article class="video-tutorial">
+				<iframe src="https://www.youtube.com/embed/I23b8kxmP0o" title="¿Cómo registrar un dominio web en NIC Argentina? - Tutorial paso a paso" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				<p>¿Cómo registrar un dominio web?</p>
+			</article>
+			<article class="video-tutorial">
+				<iframe src="https://www.youtube.com/embed/GDwVUX2jsIc" title="¿Cómo delegar un dominio web en NIC Argentina?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				<p>¿Cómo delegar un dominio web?</p>
+			</article>
+			<article class="video-tutorial">
+				<iframe src="https://www.youtube.com/embed/JyjLLW9YLH4" title="¿Cómo renovar un dominio web en NIC Argentina?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+				<p>¿Cómo renovar un dominio web?</p>
+			</article>
+		</div>
+	</section>
+    <script src="./scripts/script.js"></script>
+</body>
+</html>
